@@ -1,0 +1,22 @@
+Funcionamiento: 
+
+Sort coge la lista.size / 2 ya que en la segunda mitad están los hijos. Entonces con ese iterador, llama a sink (para hacer el heap). 
+
+Dentro de sink, teniendo este iterador, el bucle se va a hacer hasta que el iterador*2 tenga el tamaño de la lista, ya que eso 
+significa que se ha recorrido todos los hijos del ultimo nivel. Es importante destacar que esto va de abajo hacia arriba. 
+Entonces con este iterador, va a la posición de la lista y comprueba que su hijo izquierdo (que es el iterador*2 en index position) 
+no sea más pequeño que su hijo derecho (que es el iterador*2 +1 en index osition). En caso de que si lo sea, se aumenta +1 el 
+childizquierdo para así coger el derecho ya que es el que se puede llegar a intercambiar en caso de que sea más grande que el padre.
+Luego se comprueba si este hijo es más grande que el padre. Si no lo es, se para, ya que se cumple por lo tanto la propiedad de heap. 
+En caso de que no, pues se intercambian este padre y su hijo. Por último, se le da al iterador el calor en index del hijo.
+
+Esto último se hace porque queremos que avance por una linea por así decirlo. 
+
+Esto se va haiendo así poco a poco hatas que el iterador de Sort llegue a 1 (no a 0 ya que en el 0 no tenemos nada para así 
+no tener problemas con los index).
+
+Luego dentro de la función de Sort, se va eliminando el más grande que básicamente es el que está en la posición 1 y se desplaza 
+al final de la lista. Luego se hace sink otra vez para que se vuelva a hacer el heap y así tener siempre el más grande en la
+posición 1. Esto se hace hasta que el iterador de Sort llegue a 1, ya que en ese caso, solo quedaría un elemento en la lista y
+por lo tanto, ya estaría ordenada.
+

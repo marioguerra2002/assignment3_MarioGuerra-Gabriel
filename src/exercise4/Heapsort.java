@@ -12,31 +12,38 @@ public class Heapsort {
     heap_size = list_to_sort.length - 1;
 
   }
-  // sink is used to maintain the heap property of the list
-  public void Sink(int start_pos) { // int i is the index of the element to sink
-    int left_child;
-    while ((2 * start_pos) <= heap_size) { // 2 * i is the left child of i
-      left_child = 2 * start_pos;
-      if (left_child < heap_size && list_to_sort[left_child] < list_to_sort[left_child+1]) { // if left child is smaller than right child 
-        left_child += 1; // update the index of the child to swap
+  
+  public void Sink(int iterator) {
+    while (iterator * 2 <= heap_size) {
+      int child = iterator * 2; // left child
+      if (child < heap_size && list_to_sort[child] < list_to_sort[child + 1]) {  // check if right child is bigger
+        child++;
       }
-      else if (list_to_sort[start_pos] >= list_to_sort[left_child]) { // if parent is bigger than child
-        break; // if parent is bigger than child, we don't need to sink, heap property is preserved
+      if (!(list_to_sort[iterator] < list_to_sort[child])) { // check if the parent is bigger than the child
+        break;
       }
-      // if parent is smaller than child, we need to swap them
-      int temp = list_to_sort[start_pos];
-      list_to_sort[start_pos] = list_to_sort[left_child];
-      list_to_sort[left_child] = temp;
-      start_pos = left_child; // update the index of the element to sink and continue
-    }
-    System.out.println("Sink: ");
-    for (int i = 1; i < list_to_sort.length; i++) {
-      System.out.print(list_to_sort[i] + " ");
+      // in case the parent is smaller than the child, we need to swap them
+        int temp = list_to_sort[iterator];
+        list_to_sort[iterator] = list_to_sort[child];
+        list_to_sort[child] = temp;
+        iterator = child;
     }
   }
-  // onces the heap property is preserved, we can sort the list
-  public void Sort(int[] list) {
-    
+  // the biggest element is the root of the heap, so we need to swap it with the last element to order
+  public void Sort() {
+    int iterator = heap_size / 2;
+    while (iterator >= 1) {
+      Sink(iterator);
+      iterator--; 
+    }
+    while (heap_size > 1) {
+      int temp = list_to_sort[1];
+      list_to_sort[1] = list_to_sort[heap_size];
+      list_to_sort[heap_size] = temp;
+      heap_size--;
+      // we need to sink the new root, that whould be the biggest element
+      Sink(1);
+    }
   }
   public void println() {
     for (int i = 1; i < list_to_sort.length; i++) {
@@ -47,7 +54,9 @@ public class Heapsort {
   public static void main(String[] args) {
     int[] list = { 1,4,8,2,5,9,3,7,6 };
     Heapsort h = new Heapsort(list);
-    h.Sink(4);
+    h.Sort();
+    h.println();
+    
     
     
   }
