@@ -1,0 +1,64 @@
+// import java.util.Arrays;
+
+// public class QuickSort {
+
+//     public static void quickSort(int[] arr, int depth) {
+//         quickSort(arr, 0, arr.length - 1, depth);
+//     }
+
+//     public static void quickSort(int[] arr, int low, int high, int depth) {
+//         if (low < high) {
+//             if (high - low + 1 <= depth) {
+//                 // Cambiar a HeapSort o InsertSort si la profundidad es menor o igual a 'depth'
+//                 // Implementa esos algoritmos aquí
+//                 // ...
+//             } else {
+//                 int pivot = medianOfThree(arr, low, high);
+//                 int partitionIndex = partition(arr, low, high, pivot);
+
+//                 quickSort(arr, low, partitionIndex - 1, depth);
+//                 quickSort(arr, partitionIndex + 1, high, depth);
+//             }
+//         }
+//     }
+
+//     public static int medianOfThree(int[] arr, int low, int high) {
+//         int mid = low + (high - low) / 2;
+//         if (arr[low] > arr[mid]) {
+//             swap(arr, low, mid);
+//         }
+//         if (arr[low] > arr[high]) {
+//             swap(arr, low, high);
+//         }
+//         if (arr[mid] > arr[high]) {
+//             swap(arr, mid, high);
+//         }
+//         return arr[mid];
+//     }
+
+//     public static int partition(int[] arr, int low, int high, int pivot) {
+//         int i = low - 1;
+//         for (int j = low; j < high; j++) {
+//             if (arr[j] <= pivot) {
+//                 i++;
+//                 swap(arr, i, j);
+//             }
+//         }
+//         swap(arr, i + 1, high);
+//         return i + 1;
+//     }
+
+//     public static void swap(int[] arr, int i, int j) {
+//         int temp = arr[i];
+//         arr[i] = arr[j];
+//         arr[j] = temp;
+//     }
+
+//     public static void main(String[] args) {
+//         int[] arr = {12, 4, 5, 6, 7, 3, 1, 15, 8, 2};
+//         int depth = 5; // Establece la profundidad a la que cambiarás a otro algoritmo
+
+//         quickSort(arr, depth);
+//         System.out.println("Arreglo ordenado: " + Arrays.toString(arr));
+//     }
+// }
